@@ -1,21 +1,20 @@
 // generated on 2016-09-03 using generator-webapp 2.1.0
 const gulp = require('gulp');
-const gulpLoadPlugins = require('gulp-load-plugins');
-const browserSync = require('browser-sync');
-const del = require('del');
-const wiredep = require('wiredep').stream;
-
+const gulpLoadPlugins = require('gulp-load-plugins'); 
+const browserSync = require('browser-sync'); 
+const del = require('del');  //使用匹配文件的方式删除文件
+const wiredep = require('wiredep').stream; //使用了bower安装库，引入文件就靠他了
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 gulp.task('styles', () => {
   return gulp.src('app/styles/*.scss')
-    .pipe($.plumber())
-    .pipe($.sourcemaps.init())
+    .pipe($.plumber())   //gulp-plumber是处理pipe错误的情况的，例如输入sass编译错误(触发error事件)进程挂掉，又要重新输入gulp...
+    .pipe($.sourcemaps.init()) //sourcemaps是一个资源地图，方便我们找到源码修改。
     .pipe($.sass.sync({
       outputStyle: 'expanded',
       precision: 10,
-      includePaths: ['.']
+       : ['.']
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
     .pipe($.sourcemaps.write())
@@ -51,15 +50,16 @@ gulp.task('lint:test', () => {
   return lint('test/spec/**/*.js', {
     fix: true,
     env: {
-      mocha: true
+      mocha: true   //摩卡单元测试用例，可以看阮老师的
     }
   })
     .pipe(gulp.dest('test/spec/**/*.js'));
 });
 
+//这个任务来于useref的例子~
 gulp.task('html', ['styles', 'scripts'], () => {
   return gulp.src('app/*.html')
-    .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
+    .pipe($.useref({searchPath: ['.tmp', 'app', '.']})) //处理html中文件引用，searchpath是指的是搜索的路径
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.cssnano({safe: true, autoprefixer: false})))
     .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
@@ -98,7 +98,7 @@ gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
   browserSync({
-    notify: false,
+    notify: false,  //通知信息关
     port: 9000,
     server: {
       baseDir: ['.tmp', 'app'],
@@ -150,13 +150,19 @@ gulp.task('serve:test', ['scripts'], () => {
 });
 
 // inject bower components
+/*wiredep 通过在html中加入标签来引入文件,参见官网
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- bower:js -->
+  <!-- endbower -->*/
+
 gulp.task('wiredep', () => {
   gulp.src('app/styles/*.scss')
     .pipe(wiredep({
       ignorePath: /^(\.\.\/)+/
     }))
     .pipe(gulp.dest('app/styles'));
-
+  
   gulp.src('app/*.html')
     .pipe(wiredep({
       exclude: ['bootstrap-sass'],

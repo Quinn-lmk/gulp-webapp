@@ -1,0 +1,55 @@
+{
+  "private": true,
+  "engines": {
+    "node": ">=4"
+  },
+  "devDependencies": {
+    //用es6的写法，转码成es5
+    "babel-core": "^6.4.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-register": "^6.5.2",
+    //同步
+    "browser-sync": "^2.2.1",
+    //del是删除
+    "del": "^1.1.1",
+
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.1",
+    "gulp-babel": "^6.1.1",
+    //缓存代理，处理图片时用到
+    "gulp-cache": "^0.4.2",
+    //压缩css，支持
+    "gulp-cssnano": "^2.0.0",
+    //统一js代码风格
+    "gulp-eslint": "^2.0.0",
+    "gulp-htmlmin": "^1.3.0",
+    //根据条件判断是否执行
+    "gulp-if": "^2.0.0",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-load-plugins": "^0.10.0",
+    //plumber处理错误，防止
+    "gulp-plumber": "^1.0.1",
+    "gulp-sass": "^2.0.0",
+    //控制台显示大小
+    "gulp-size": "^1.2.1",
+    "gulp-sourcemaps": "^1.5.0",
+    "gulp-uglify": "^1.1.0",
+    //
+    "gulp-useref": "^3.0.0",
+    "main-bower-files": "^2.5.0",
+    "wiredep": "^2.2.2"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "node": true,
+      "browser": true
+    },
+    "rules": {
+      "quotes": [
+        2,
+        "single"
+      ]
+    }
+  }
+}
