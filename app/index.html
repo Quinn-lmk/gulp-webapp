@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>test</title>
-  <link rel="stylesheet" type="text/css" href="css/test.css">
-</head>
-<body>
-  <div>test limingkunfa</div>
-  <div>test limingkunfa</div>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet" type="text/css" href="styles/test.css">
+    <script type="text/javascript" src="scripts/test.js"></script>
+    <!-- build:css styles/combined.css -->
+    <link href="styles/one.css" rel="stylesheet">
+    <link href="styles/three.css" rel="stylesheet">
+    <!-- endbuild -->
+      <!-- bower:css -->
+      <!-- endbower -->
+    <link href="styles/two.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="mydiv">test limingkunfa</div>
+    <div>test limingkunfa</div>
+    <!-- build:js scripts/combined.js -->
+    <script type="text/javascript" src="scripts/one.js"></script>
+    <script type="text/javascript" src="scripts/two.js"></script>
+    <!-- endbuild -->
+     <!-- bower:js -->
+     <script src="/bower_components/modernizr/modernizr.js"></script>
+     <script src="/bower_components/jquery/dist/jquery.js"></script>
+     <!-- endbower -->
+  </body>
 </html>
