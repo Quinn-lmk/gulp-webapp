@@ -52,7 +52,7 @@ gulp.task('lint:test', () => {
   return lint('test/spec/**/*.js', {
     fix: true,
     env: {
-      mocha: true   //摩卡单元测试用例，可以看阮老师的
+      mocha: true   //摩卡单元测试用例，可
     }
   })
     .pipe(gulp.dest('test/spec/**/*.js'));
